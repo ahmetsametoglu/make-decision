@@ -14,18 +14,12 @@ import {
   IonCol,
 } from '@ionic/react';
 import { logOut } from 'ionicons/icons';
-import { useDispatch } from 'react-redux';
 import NewDecision from '../components/new-decision-card/NewDecisionCard';
 import DecisionList from '../container/decision-list/DecisionList';
-import { accessStore } from '@api/helper/selector.helper';
-import { AuthActions } from '@api/redux/auth/action';
+import { useServices } from '@api/context/ServiceContext';
 
 const Home: React.FC = () => {
-  const { loading } = accessStore(s => s.decisionState);
-  const dispatch = useDispatch();
-  const logout = () => {
-    dispatch(AuthActions.logout());
-  };
+  const { AuthService } = useServices();
 
   return (
     <IonPage>
@@ -33,7 +27,7 @@ const Home: React.FC = () => {
         <IonToolbar color="primary">
           <IonTitle>Make Decision</IonTitle>
           <IonButtons slot="end">
-            <IonButton onClick={logout}>
+            <IonButton onClick={() => AuthService.logout()}>
               <IonIcon slot="icon-only" icon={logOut} />
             </IonButton>
           </IonButtons>
@@ -43,7 +37,7 @@ const Home: React.FC = () => {
         <IonGrid class="full-size">
           <IonRow class="ion-justify-content-center ion-align-items-center full-size">
             <IonCol sizeXs="12" sizeSm="9" sizeMd="8" sizeLg="10" sizeXl="10">
-              {!loading && <NewDecision />}
+              <NewDecision />
               <DecisionList />
             </IonCol>
           </IonRow>

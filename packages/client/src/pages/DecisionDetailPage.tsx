@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router';
 import { IonPage, IonContent, IonHeader, IonTitle, IonToolbar, IonBackButton, IonButtons, IonCol } from '@ionic/react';
 import { useDispatch } from 'react-redux';
@@ -7,13 +7,15 @@ import Spinner from '../components/spinner/Spinner';
 import GridLayout from '../layout/GridLayout';
 import { DecisionSocketService } from '@api/services/decision-socket.service';
 import { AppActions } from '@api/redux/app/action';
-import { DecisionActions } from '@api/redux/decision/action';
 import { accessStore } from '@api/helper/selector.helper';
+import { useServices } from '@api/context/ServiceContext';
 
 const DecisionDetailPage = () => {
   console.log('[DecisionDetailPage]');
   const dispatch = useDispatch();
-  const { loading, selectedDecision } = accessStore(s => s.decisionState);
+  const [loading, setLoading] = useState(false);
+  const { selectedDecision } = accessStore(s => s.decisionState);
+  const { DecisionService } = useServices();
   const location = useLocation<{ id: string }>();
   const ws = useRef<DecisionSocketService>();
 
@@ -23,7 +25,16 @@ const DecisionDetailPage = () => {
     if (!location.state?.id) {
       dispatch(AppActions.showNotification('error', 'decision not exist'));
     } else {
-      dispatch(DecisionActions.get(location.state.id));
+      setLoading(true);
+
+      DecisionService.selectDecision(location.state.id)
+        .then(decision => {
+          setLoading(false);
+          if (decision.status !== 'Decided') {
+            ws.current?.subscribe(decision._id!);
+          }
+        })
+        .catch(() => setLoading(false));
     }
     return () => {
       console.log('[DecisionDetailPage]: useEffect destroy');
@@ -32,20 +43,6 @@ const DecisionDetailPage = () => {
     };
     //eslint-disable-next-line
   }, []);
-
-  useEffect(() => {
-    console.log('[DecisionDetailPage]: selectedDecision useEffect init');
-
-    if (selectedDecision && selectedDecision.status !== 'Decided') {
-      ws.current?.subscribe(selectedDecision._id!);
-      console.log('subscribe decision');
-    }
-
-    return () => {
-      console.log('[DecisionDetailPage]: selectedDecision useEffect destroy');
-    };
-    //eslint-disable-next-line
-  }, [selectedDecision]);
 
   // if (!location.state?.id || (!loading && !!error && !selectedDecision)) {
   //   return <Redirect to={{ pathname: '/error', state: { message: 'this page is not exist' } }} />;

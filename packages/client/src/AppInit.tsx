@@ -6,7 +6,6 @@ import Routing from './router/Routing';
 import HttpUtil from '@api/util/http.util';
 import AppUtil from '@api/util/app.util';
 import { AuthActions } from '@api/redux/auth/action';
-import { DecisionActions } from '@api/redux/decision/action';
 
 const AppInit = () => {
   console.log('[AppInit]');
@@ -17,7 +16,6 @@ const AppInit = () => {
     console.log('[AppInit]: useEffect init');
     AppUtil.initializeApp(logout);
     HttpUtil.startLogging();
-    dispatch(DecisionActions.getList());
 
     return () => {
       console.log('[AppInit]: useEffect destroy');

@@ -16,7 +16,7 @@ import { accessStore } from '@api/helper/selector.helper';
 
 type Prop = {};
 const NewDecisionCard = (props: Prop) => {
-  const big = accessStore(s => s.decisionState.decisionList.length) === 0;
+  const big = accessStore(s => s.decisionState.decisions.length) === 0;
 
   const bigDesign = (
     <div className="big-design">

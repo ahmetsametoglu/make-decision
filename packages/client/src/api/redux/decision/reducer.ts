@@ -3,15 +3,12 @@ import { Reducer } from 'typesafe-actions';
 import { DecisionAction, DecisionActionType } from './action';
 
 export type DecisionState = {
-  error?: string;
-  loading: boolean;
-  decisionList: IDecision[];
+  decisions: IDecision[];
   selectedDecision: IDecision | null;
 };
 
 const initialState: DecisionState = {
-  loading: false,
-  decisionList: [],
+  decisions: [],
   selectedDecision: null,
 };
 
@@ -20,35 +17,21 @@ export const decisionReducer: Reducer<DecisionState, DecisionAction> = (
   action,
 ): DecisionState => {
   switch (action.type) {
-    case DecisionActionType.CREATE:
-      return { ...state, error: undefined, loading: true };
-    case DecisionActionType.CREATE_SUCCESS:
-      return {
-        ...state,
-        error: undefined,
-        loading: false,
-        decisionList: [action.payload.decision, ...state.decisionList],
-      };
-    case DecisionActionType.CREATE_ERROR:
-      return { ...state, error: action.payload.message, loading: false };
+    case DecisionActionType.ADD: {
+      const { decision } = action.payload;
+      const decisions = [...state.decisions];
+      decisions.push(decision);
+      return { ...state, decisions };
+    }
 
-    case DecisionActionType.GET_LIST:
-      return { ...state, error: undefined, loading: true };
-    case DecisionActionType.GET_LIST_SUCCESS:
-      const decisionList = [...action.payload.decisionList];
-      return { ...state, error: undefined, loading: false, decisionList };
-    case DecisionActionType.GET_LIST_ERROR:
-      return { ...state, error: action.payload.message, loading: false };
-
-    case DecisionActionType.GET:
-      return { ...state, error: undefined, loading: true, selectedDecision: null };
-    case DecisionActionType.GET_SUCCESS:
-      return { ...state, error: undefined, loading: false, selectedDecision: action.payload.decision };
-    case DecisionActionType.GET_ERROR:
-      return { ...state, error: action.payload.message, loading: false, selectedDecision: null };
-
-    case DecisionActionType.UNSUBSCRIBE:
-      return { ...state, selectedDecision: null };
+    case DecisionActionType.SET_LIST: {
+      const { decisions } = action.payload;
+      return { ...state, decisions: [...decisions] };
+    }
+    case DecisionActionType.SELECT_DECISION: {
+      const { decision } = action.payload;
+      return { ...state, selectedDecision: !!decision ? { ...decision } : null };
+    }
 
     default:
       return { ...state };

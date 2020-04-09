@@ -23,7 +23,7 @@ const NewDecisionForm = () => {
       restriction: form[2],
     };
 
-    dispatch(DecisionActions.create(newDecision));
+    dispatch(DecisionActions.add(newDecision));
   };
 
   return (
