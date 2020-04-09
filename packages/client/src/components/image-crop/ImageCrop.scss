@@ -1,0 +1,14 @@
+@media screen and (min-width: 750px) {
+  ion-modal {
+    --width: 80vw !important;
+    --height: 80vh !important;
+    .modal-wrapper.sc-ion-modal-md {
+      background-color: transparent; // rgba(255, 255, 224, 0.424);
+    }
+  }
+}
+
+.react-crop {
+  max-width: 80vw;
+  max-height: 80vh;
+}

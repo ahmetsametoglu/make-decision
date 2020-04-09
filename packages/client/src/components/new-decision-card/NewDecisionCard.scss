@@ -1,0 +1,18 @@
+.new-decision {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  .big-design {
+    margin: auto;
+    padding: 20px;
+    margin-bottom: 150px;
+    max-width: 700px;
+    // border: solid 1px red;
+  }
+
+  .small-design {
+    box-shadow: rgb(209, 153, 153) 1px 1px 1px 1px;
+    width: 500px;
+  }
+}
