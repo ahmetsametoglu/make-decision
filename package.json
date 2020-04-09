@@ -1,0 +1,20 @@
+{
+  "name": "make-decision",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "client": "cd packages/client && yarn start",
+    "server": "cd packages/server && yarn start",
+    "add:client": "cd packages/client && yarn add",
+    "add:server": "cd packages/server && yarn add",
+    "rm:client": "cd packages/client && yarn remove",
+    "rm:server": "cd packages/server && yarn remove",
+    "node:all": "yarn node:client && yarn node:server",
+    "node:client": "cd packages/client && yarn",
+    "node:server": "cd packages/server && yarn",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
