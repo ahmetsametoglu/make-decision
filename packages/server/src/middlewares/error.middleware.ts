@@ -1,6 +1,6 @@
+import { IErrorResponse } from '@shared/models/error-response.model';
 import { NextFunction, Response, Request } from 'express';
 import { HttpError } from '../api/models/http-error.model';
-import { IErrorResponse } from '@shared/models/error-response';
 
 export const handleRouteError = (_: Request, __: Response, next: NextFunction) => {
   const error = new HttpError('This route not found.', 404);

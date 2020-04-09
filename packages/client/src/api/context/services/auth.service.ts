@@ -1,4 +1,4 @@
-import { IErrorResponse } from '@shared/models/error-response';
+import { IErrorResponse } from '@shared/models/error-response.model';
 import { Dispatch } from 'react';
 import Axios from 'axios';
 import { BaseService } from './base.service';
