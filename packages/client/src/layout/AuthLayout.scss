@@ -1,0 +1,28 @@
+.auth-container {
+  background: url(/assets/img/auth-background.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
+  .auth-buttons {
+    width: 100%;
+    text-align: center;
+    margin: 10px;
+
+    ion-button {
+      width: 250px;
+    }
+  }
+
+  .navigation-link {
+    padding: 5px;
+    text-align: right;
+
+    ion-button {
+      text-transform: none;
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      font-size: 14px;
+    }
+  }
+}

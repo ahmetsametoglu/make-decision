@@ -1,0 +1,30 @@
+.grid-layout {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+
+  .grid-layout-row {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+
+    ion-col.flex-v-h-center {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    ion-col.flex-v-center {
+      display: flex;
+      align-items: center;
+    }
+
+    ion-col.flex-h-center {
+      display: flex;
+      justify-content: center;
+    }
+  }
+}
