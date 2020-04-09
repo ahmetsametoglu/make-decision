@@ -1,0 +1,60 @@
+/* Core CSS required for Ionic components to work properly */
+@import '../node_modules/@ionic/react/css/core.css';
+
+/* Basic CSS for apps built with Ionic */
+@import '../node_modules/@ionic/react/css/normalize.css';
+@import '../node_modules/@ionic/react/css/structure.css';
+@import '../node_modules/@ionic/react/css/typography.css';
+
+/* Optional CSS utils that can be commented out */
+@import '../node_modules/@ionic/react/css/padding.css';
+@import '../node_modules/@ionic/react/css/float-elements.css';
+@import '../node_modules/@ionic/react/css/text-alignment.css';
+@import '../node_modules/@ionic/react/css/text-transformation.css';
+@import '../node_modules/@ionic/react/css/flex-utils.css';
+@import '../node_modules/@ionic/react/css/display.css';
+
+/* Theme variables */
+@import './theme/variables.scss';
+
+.reset-mar-pad {
+  margin: 0;
+  padding: 0;
+}
+
+.full-size {
+  height: 100%;
+  width: 100%;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.full-height {
+  height: 100%;
+}
+
+.content-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.check-border {
+  border: solid;
+}
+
+#loading-spinner {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  ion-spinner {
+    width: 60px !important;
+    height: 60px !important;
+    color: var(--ion-color-danger);
+  }
+}
