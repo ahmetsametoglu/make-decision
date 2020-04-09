@@ -1,0 +1,25 @@
+// ion-content ion-toolbar {
+//   --background: translucent;
+// }
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.75rem;
+  height: max-content;
+
+  .decision-history {
+    background-color: lightgoldenrodyellow;
+    width: 100%;
+    flex-grow: 6;
+    padding: 10px;
+  }
+}
+
+ion-spinner {
+  width: 80px !important;
+  height: 80px !important;
+  color: var(--ion-color-danger);
+}
